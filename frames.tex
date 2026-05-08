@@ -1,0 +1,137 @@
+\documentclass[a4paper,article,10pt]{extarticle}
+\usepackage{unicode-math}
+\usepackage{microtype}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{centernot}
+\usepackage{amsfonts}
+\usepackage{chngcntr}
+\usepackage{ragged2e}
+\usepackage{blindtext}
+\usepackage{float}
+\usepackage{faktor}
+\usepackage{csquotes}
+%\usepackage{biblatex}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+%\addbibresource{ref.bib}
+\usepackage[left=30mm, top=20mm, right=15mm, bottom=20mm,nohead, includefoot,footskip=35pt]{geometry}
+\usepackage{bm}
+\usepackage[dvipsnames]{xcolor}
+
+
+\newtheorem{theo}{Теорема}
+\newtheorem{col}{Следствие}
+\newtheorem{lem}{Лемма}
+\newtheorem {defi}{Определение}
+\newtheorem{rem}{Замечание}
+
+
+
+\definecolor{cyan}{HTML}{2aa198}
+\definecolor{base}{HTML}{586e75}
+\sloppy
+\definecolor{magenta}{HTML}{d33682}
+\setmainfont[Ligatures=TeX]{CMU Serif}
+\setmathfont{Latin Modern Math}
+\setmathfont[range={"27CB}, Scale=MatchUppercase]{STIX Two Math}
+\counterwithin*{equation}{subsection}
+\makeatletter
+\DeclareRobustCommand\bigop[1]{%
+  \mathop{\vphantom{\sum}\mathpalette\bigop@{#1}}\slimits@
+}
+\newcommand{\bigop@}[2]{%
+  \vcenter{%
+    \sbox\z@{$#1\sum$}%
+    \hbox{\resizebox{\ifx#1\displaystyle.9\fi\dimexpr\ht\z@+\dp\z@}{!}{$\m@th#2$}}%
+  }%
+}
+\makeatother
+\begin{document}
+% Добавляем 1 к счетчику страниц ПОСЛЕ titlepage, чтобы исключить 
+% влияние titlepage environment
+\tableofcontents
+\section{Задача}
+Пусть $m=50,n=32,$
+\[
+	f_k = \frac{k}{\sqrt{m}} \begin{bmatrix} 1 \\ e^{2 \pi i \frac{k-1}{m}} \\ \vdots \\ e^{2 \pi i \left(n-1\right) \frac{k-1}{m}}\end{bmatrix}, k=1,2,\dots,m, v = \begin{bmatrix} 1\\2\\\vdots\\n\end{bmatrix}
+\]
+\begin{enumerate}
+	\item{Докажите, что последовательность $f=\left\{f_k\right\}_{k=1}^m$ образует фрейм в пространстве $\mathbb{C}^n$.}
+	\item{Оцените или найдите точные границы фрейма $f$.}
+\end{enumerate}
+\section{Решение}
+\subsection{}
+Рассмотрим ортонормальный базис $\left\{ e_k \right\}_{k=1}^m$ в $\mathbb{C}^m$:
+\[
+	e_k = \frac{1}{\sqrt{m}} \begin{bmatrix} 1 \\ e^{2 \pi i \frac{k-1}{m}} \\ \vdots \\ e^{2 \pi i \left(m-1\right) \frac{k-1}{m}}\end{bmatrix}, k=\overline{1,m},
+\]
+используемый в дискретном преобразовании Фурье. (Если очень хочется, можно показать, что это действительно ОНБ).
+
+Рассмотрим также систему $\left\{\widetilde{f}_k\right\}_{k=1}^m$:
+\[
+	\widetilde{f}_k = \frac{1}{\sqrt{m}} \begin{bmatrix} 1 \\ e^{2 \pi i \frac{k-1}{m}} \\ \vdots \\ e^{2 \pi i \left(n-1\right) \frac{k-1}{m}}\end{bmatrix}, k=\overline{1,m}.
+\]
+Выберем ортогональный проектор $P: \mathbb{C}^m \to \mathbb{C}^n$, производящий проекцию на первые $n$ осей, т.е. $P e_k = \widetilde{f}_k$. Рассмотрим $\left\{ e_k \right\}_{k=1}^m$ как фрейм с границами $A=B=1$, т.к. базис ортонормированный. Тогда по результату задачи 1.1 $\left\{ \widetilde{f}_k\right\}_{k=1}^m$ также будет фреймом, причём жёстким с границами $A=B=1$, для него будет выполнено:
+\[
+	\sum_{k=1}^m \left| \left< f, \widetilde{f}_k \right> \right|^2 = \left| \left| f \right| \right|^2, \forall f \in \mathbb{C}^n
+\]
+Рассмотрим систему $\left\{f_k\right\}_{k=1}^m=\left\{k \widetilde{f}_k\right\}_{k=1}^m$. Для неё будет верно:
+\[
+	\sum_{k=1}^m \left| \left< f, f_k\right> \right|^2 = \sum_{k=1}^m k^2 \left| \left< f, \widetilde{f}_k\right>\right|^2 
+\]
+Рассмотрим оценки для границ фрейма.
+\[
+	\sum_{k=1}^m k^2 \left| \left< f, \widetilde{f}_k \right> \right|^2 \ge \sum_{k=1}^m \left| \left< f, \widetilde{f}_k \right> \right|^2 \ge \left| \left| f \right| \right|^2 \implies A \ge 1
+\]
+С другой стороны,
+\[
+	\sum_{k=1}^m k^2 \left| \left< f, \widetilde{f}_k \right> \right|^2 \le m^2 \sum_{k=1}^m \left| \left< f, \widetilde{f}_k \right> \right|^2 \le m^2 \left| \left| f \right| \right|^2 \implies B \le m^2
+\]
+Следовательно, система $\left\{ f_k\right\}_{k=1}^m$ --- фрейм.
+\subsection{}
+Для подсчёта точных границ фрейма построим матричную форму фреймового оператора $S$. Рассмотрим $T$ --- оператор синтеза. Его вид:
+\[
+	T = \begin{bmatrix} f_1 & \dots & f_m \end{bmatrix} = \frac{1}{\sqrt{m}}\begin{bmatrix} 
+			1 & \dots & k & \dots & m \\
+			1 & \dots & k e^{2 \pi i \frac{k-1}{m}} & \dots & m e^{2 \pi i \frac{m-1}{m}} \\
+			\vdots & & & \ddots & \vdots \\
+			1 & \dots & k e^{2 \pi i \left(n-1\right) \frac{k-1}{m}} & \dots & m e^{2 \pi i \left(n-1\right) \frac{m-1}{m}} 
+		\end{bmatrix}
+\]
+Оператор $S$ будет иметь вид:
+\[
+	S = TT^* = \sum_{l=1}^m f_l f_l^* = \frac{1}{m} \left\{\sum_{l=1}^m l^2 e^{\frac{2 \pi i}{m} \left(\left(l-1\right)\left(i-1\right) - \left(l-1\right)\left(j-1\right)\right)}\right\}_{i,j=1}^n = \frac{1}{m} \left\{ \sum_{l=1}^m l^2 e^{\frac{2 \pi i}{m} \left(l-1\right)\left(i-j\right)}\right\}_{i,j=1}^n
+\]
+где $T^*$ --- сопряжённый оператору синтеза оператор анализа.
+
+Покажем, что нижняя и верхняя границы фрейма совпадают с соответственно минимальным и максимальным собственным числом $S$.
+
+Рассмотрим ортонормальный базис в $\mathbb{C}^n$, состоящий из собственных векторов $S$. (Такой базис можно построить, т.к. $S$ Эрмитова). Обозначим эти вектора $\left\{e_k\right\}_{k=1}^n$, соответстующие им собственные числа $\left\{ \lambda_k\right\}_{k=1}^n$. Тогда $\forall f \in \mathbb{C}^n$:
+\[
+	f = \sum_{k=1}^n \left<f, e_k \right> e_k \implies Sf = \sum_{k=1}^n \left<f, e_k \right> S e_k = \sum_{k=1}^n \lambda_k \left<f, e_k \right> e_k
+\]
+С другой стороны,
+\[
+	Sf = \sum_{k=1}^m \left<f, f_k\right> f_k \implies \left<Sf, f\right> = \sum_{k=1}^m \left| \left< f, f_k \right> \right|^2 = \sum_{k=1}^n \lambda_k \left|\left<f, e_k \right> \right|^2
+\]
+Отсюда
+\[
+	\lambda_{\min} \left| \left| f \right| \right|^2 = \lambda_{\min} \sum_{k=1}^m \left| \left< f, e_k \right> \right|^2 \le \sum_{k=1}^m \lambda_k \left| \left< f, e_k \right> \right|^2 \le \lambda_{\max} \sum_{k=1}^m \left| \left< f, e_k \right> \right|^2 = \lambda_{\max} \left| \left| f \right| \right|^2,
+\]
+и
+\[
+	\lambda_{\min} \left| \left| f \right| \right|^2 \le \sum_{k=1}^m \left| \left< f, f_k\right> \right|^2 \le \lambda_{\max} \left| \left| f \right| \right|^2
+\]
+причём $\lambda_{\min}$ и $\lambda_{\max}$ достигаются, например, для $f = e_{\min}$ и $f = e_{\max}$ соответственно.
+
+Тогда границы фрейма $\left\{ f_k\right\}$ могут быть вычислены как минимальное и максимальное собственные числа матрицы $S$, т.е. $A = \lambda_{\min{}} \left(S\right), B = \lambda_{\max{}} \left( S\right)$. Эти числа приблизительно равны $A \approx 7.375, B \approx 2392.996$.
+
+\end{document} 
