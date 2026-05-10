@@ -1,17 +1,5 @@
 \documentclass[a4paper,article,10pt]{extarticle}
 \usepackage{graphicx}
-\usepackage{ifluatex}
-\ifluatex
-  \usepackage{ifpdf}
-  \ifpdf
-    \expandafter\ifx\csname Gin@rule@.jp2\endcsname\relax
-      \DeclareGraphicsRule{.jp2}{jpg}{.jp2}{#1}
-      \DeclareGraphicsRule{.JP2}{jpg}{.JP2}{#1}
-      \usepackage{grfext}
-      \AppendGraphicsExtensions{.jp2,.JP2}
-    \fi
-  \fi  
-\fi
 \graphicspath{ {images/} }
 \usepackage{unicode-math}
 \usepackage{microtype}
