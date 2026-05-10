@@ -1,9 +1,22 @@
 \documentclass[a4paper,article,10pt]{extarticle}
+\usepackage{graphicx}
+\usepackage{ifluatex}
+\ifluatex
+  \usepackage{ifpdf}
+  \ifpdf
+    \expandafter\ifx\csname Gin@rule@.jp2\endcsname\relax
+      \DeclareGraphicsRule{.jp2}{jpg}{.jp2}{#1}
+      \DeclareGraphicsRule{.JP2}{jpg}{.JP2}{#1}
+      \usepackage{grfext}
+      \AppendGraphicsExtensions{.jp2,.JP2}
+    \fi
+  \fi  
+\fi
+\graphicspath{ {images/} }
 \usepackage{unicode-math}
 \usepackage{microtype}
 \usepackage[english,russian]{babel}
 \usepackage{amsmath}
-\usepackage{graphicx}
 \usepackage{centernot}
 \usepackage{amsfonts}
 \usepackage{chngcntr}
@@ -58,7 +71,35 @@
 % Добавляем 1 к счетчику страниц ПОСЛЕ titlepage, чтобы исключить 
 % влияние titlepage environment
 \tableofcontents
-\section{Задача}
+\section{Задача 1}
+Решите задачи:
+\begin{enumerate}
+	\item{Пусть $\left\{f_k\right\}_{k=1}^m$ --- фрейм в пространстве $V$ с границами $A$, $B$; $P$ --- ортогональный проектор пространства $V$ на подпространство $W$. Докажите, что $\left\{Pf_k\right\}_{k=1}^m$ --- фрейм для $W$ с границами $A$, $B$.}
+	\item{Пусть $\left\{e_1, e_2\right\}$ --- ортонормированный базис в $\mathbb{R}^2$. Для фрейма $\left\{e_1, \frac{1}{2} e_2, 2e_2\right\}$ найдите канонический двойственный (то есть фрейм $\left\{S^{-1} f_k\right\}$, где $\left\{f_k\right\}$ --- исходный фрейм с оператором $S$).}
+	\item{Докажите, что $\left\{e^{2 \pi i k x}\right\}_{k \in \mathbb{Z}}$ --- фрейм в пространстве $L_2 \left[0, \frac{1}{2}\right]$. Каковы границы этого фрейма? Как действует оператор $S^{-1}$, если $S$ --- фреймовый оператор?}
+\end{enumerate}
+\subsection{Решение}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{t1-1}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{t1-2}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{t1-3}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.775\textwidth]{t1-4}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.775\textwidth]{t1-5}
+\end{figure}
+\section{Задача 2}
 Пусть $m=50,n=32,$
 \[
 	f_k = \frac{k}{\sqrt{m}} \begin{bmatrix} 1 \\ e^{2 \pi i \frac{k-1}{m}} \\ \vdots \\ e^{2 \pi i \left(n-1\right) \frac{k-1}{m}}\end{bmatrix}, k=1,2,\dots,m, v = \begin{bmatrix} 1\\2\\\vdots\\n\end{bmatrix}
@@ -67,8 +108,8 @@
 	\item{Докажите, что последовательность $f=\left\{f_k\right\}_{k=1}^m$ образует фрейм в пространстве $\mathbb{C}^n$.}
 	\item{Оцените или найдите точные границы фрейма $f$.}
 \end{enumerate}
-\section{Решение}
-\subsection{}
+\subsection{Решение}
+\subsubsection{}
 Рассмотрим ортонормальный базис $\left\{ e_k \right\}_{k=1}^m$ в $\mathbb{C}^m$:
 \[
 	e_k = \frac{1}{\sqrt{m}} \begin{bmatrix} 1 \\ e^{2 \pi i \frac{k-1}{m}} \\ \vdots \\ e^{2 \pi i \left(m-1\right) \frac{k-1}{m}}\end{bmatrix}, k=\overline{1,m},
@@ -96,7 +137,7 @@
 	\sum_{k=1}^m k^2 \left| \left< f, \widetilde{f}_k \right> \right|^2 \le m^2 \sum_{k=1}^m \left| \left< f, \widetilde{f}_k \right> \right|^2 \le m^2 \left| \left| f \right| \right|^2 \implies B \le m^2
 \]
 Следовательно, система $\left\{ f_k\right\}_{k=1}^m$ --- фрейм.
-\subsection{}
+\subsubsection{}
 Для подсчёта точных границ фрейма построим матричную форму фреймового оператора $S$. Рассмотрим $T$ --- оператор синтеза. Его вид:
 \[
 	T = \begin{bmatrix} f_1 & \dots & f_m \end{bmatrix} = \frac{1}{\sqrt{m}}\begin{bmatrix} 
