@@ -67,10 +67,26 @@
 	\item{Докажите, что $\left\{e^{2 \pi i k x}\right\}_{k \in \mathbb{Z}}$ --- фрейм в пространстве $L_2 \left[0, \frac{1}{2}\right]$. Каковы границы этого фрейма? Как действует оператор $S^{-1}$, если $S$ --- фреймовый оператор?}
 \end{enumerate}
 \subsection{Решение}
+\subsubsection{Задача 1.1}
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{t1-1}
+\includegraphics[width=0.82\textwidth]{t1-1}
 \end{figure}
+Рассмотрим $w_A, w_B$ такие, что 
+\[
+	A \left| \left| w_A \right| \right|^2 = \sum_{h=1}^m \left| \left< w_A, f_h\right> \right|^2,
+\]
+\[
+	\sum_{h=1}^m \left| \left< w_B, f_h\right> \right|^2 = B \left| \left| w_B\right| \right|^2
+\]. Тогда для них также будет выполняться
+\[
+	\begin{aligned}
+	A \left| \left| w_A \right| \right|^2 = \sum_{h=1}^m \left| \left< w_A, Pf_h\right> \right|^2 \\
+	\sum_{h=1}^m \left| \left< w_B, Pf_h\right> \right|^2 = B \left| \left| w_B\right| \right|^2
+\end{aligned},
+\]
+т.е. фрейм $\left\{Pf_h\right\}_{h=1}^m$ имеет границы $A, B$.
+\subsubsection{Задача 1.2}
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{t1-2}
@@ -79,13 +95,14 @@
 \centering
 \includegraphics[width=\textwidth]{t1-3}
 \end{figure}
+\subsubsection{Задача 1.3}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.775\textwidth]{t1-4}
+\includegraphics[width=0.75\textwidth]{t1-4}
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.775\textwidth]{t1-5}
+\includegraphics[width=0.75\textwidth]{t1-5}
 \end{figure}
 \section{Задача 2}
 Пусть $m=50,n=32,$
@@ -97,7 +114,7 @@
 	\item{Оцените или найдите точные границы фрейма $f$.}
 \end{enumerate}
 \subsection{Решение}
-\subsubsection{}
+\subsubsection{Задача 2.1}
 Рассмотрим ортонормальный базис $\left\{ e_k \right\}_{k=1}^m$ в $\mathbb{C}^m$:
 \[
 	e_k = \frac{1}{\sqrt{m}} \begin{bmatrix} 1 \\ e^{2 \pi i \frac{k-1}{m}} \\ \vdots \\ e^{2 \pi i \left(m-1\right) \frac{k-1}{m}}\end{bmatrix}, k=\overline{1,m},
@@ -125,7 +142,7 @@
 	\sum_{k=1}^m k^2 \left| \left< f, \widetilde{f}_k \right> \right|^2 \le m^2 \sum_{k=1}^m \left| \left< f, \widetilde{f}_k \right> \right|^2 \le m^2 \left| \left| f \right| \right|^2 \implies B \le m^2
 \]
 Следовательно, система $\left\{ f_k\right\}_{k=1}^m$ --- фрейм.
-\subsubsection{}
+\subsubsection{Задача 2.2}
 Для подсчёта точных границ фрейма построим матричную форму фреймового оператора $S$. Рассмотрим $T$ --- оператор синтеза. Его вид:
 \[
 	T = \begin{bmatrix} f_1 & \dots & f_m \end{bmatrix} = \frac{1}{\sqrt{m}}\begin{bmatrix} 
